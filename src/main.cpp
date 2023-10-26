@@ -437,6 +437,27 @@ void setup()
     digitalWrite(RESET_OLED, 1);
     delay(2);
     digitalWrite(RESET_OLED, 0);
+#endif
+
+#ifdef INTERNAL_ACC_EN_N
+    pinMode(INTERNAL_ACC_EN_N, OUTPUT);
+    digitalWrite(INTERNAL_ACC_EN_N, 0);
+#endif
+
+#ifdef EXTERNAL_ACC_EN_N
+    pinMode(EXTERNAL_ACC_EN_N, OUTPUT);
+    digitalWrite(EXTERNAL_ACC_EN_N, 0);
+#endif
+
+#ifdef BUTTON_PIN
+#ifdef ARCH_ESP32
+
+    // If the button is connected to GPIO 12, don't enable the ability to use
+    // meshtasticAdmin on the device.
+    pinMode(config.device.button_gpio ? config.device.button_gpio : BUTTON_PIN, INPUT);
+
+#ifdef BUTTON_NEED_PULLUP
+    gpio_pullup_en((gpio_num_t)(config.device.button_gpio ? config.device.button_gpio : BUTTON_PIN));
     delay(10);
     digitalWrite(RESET_OLED, 1);
 #endif

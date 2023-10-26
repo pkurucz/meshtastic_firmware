@@ -687,7 +687,7 @@ void NodeDB::installDefaultConfig(bool preserveKey = false)
     config.bluetooth.enabled = false;
 #else
     // default to bluetooth capability of platform as default
-    config.bluetooth.enabled = true;
+    config.bluetooth.enabled = (HAS_BLUETOOTH ? true : false);
 #endif
     config.bluetooth.fixed_pin = defaultBLEPin;
 
