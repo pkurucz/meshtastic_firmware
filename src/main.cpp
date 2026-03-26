@@ -437,6 +437,8 @@ void setup()
     digitalWrite(RESET_OLED, 1);
     delay(2);
     digitalWrite(RESET_OLED, 0);
+    delay(10);
+    digitalWrite(RESET_OLED, 1);
 #endif
 
 #ifdef INTERNAL_ACC_EN_N
@@ -458,8 +460,8 @@ void setup()
 
 #ifdef BUTTON_NEED_PULLUP
     gpio_pullup_en((gpio_num_t)(config.device.button_gpio ? config.device.button_gpio : BUTTON_PIN));
-    delay(10);
-    digitalWrite(RESET_OLED, 1);
+#endif
+#endif
 #endif
 
 #ifdef SENSOR_POWER_CTRL_PIN
